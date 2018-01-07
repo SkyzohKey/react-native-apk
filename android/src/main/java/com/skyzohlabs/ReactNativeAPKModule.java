@@ -1,5 +1,6 @@
 package com.skyzohlabs;
 
+import android.content.pm.PackageManager;
 import android.content.pm.PackageInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.Intent;
