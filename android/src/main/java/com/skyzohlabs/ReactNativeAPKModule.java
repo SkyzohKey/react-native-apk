@@ -47,7 +47,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   public void installApp(String packagePath) {
     Intent intent = new Intent(Intent.ACTION_VIEW);
     intent.setDataAndType(Uri.parse(packagePath), "application/vnd.android.package-archive");
-    startActivity(intent);
+    this.reactContext.startActivity(intent);
   }
 
   public Boolean uninstallApp(String packageName) {
@@ -57,7 +57,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
 
     Intent intent = new Intent(Intent.ACTION_DELETE);
     intent.setData(Uri.parse("package:" + packageName));
-    startActivity(intent);
+    this.reactContext.startActivity(intent);
     return true;
   }
 
