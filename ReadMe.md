@@ -1,5 +1,7 @@
 # react-native-apk
 
+[![npm version](https://badge.fury.io/js/react-native-apk.svg)](https://badge.fury.io/js/react-native-apk)
+
 A react-native library to get various informations about an Android app.
 
 ## Getting started
