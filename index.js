@@ -1,4 +1,5 @@
-var RNAPK = require("react-native").NativeModules.ReactNativeAPK;
+import { NativeModules } from "react-native";
+const RNAPK = NativeModules.ReactNativeAPK;
 
 export default class ReactNativeAPK {
   /**
