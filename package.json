@@ -1,0 +1,22 @@
+{
+  "main": "index.js",
+  "license": "MIT",
+  "name": "react-native-apk",
+  "author": "SkyzohKey <skyzohkey@protonmail.com>",
+  "version": "0.1.0",
+  "description":
+    "API to install, uninstall, get version, check presence of a package, or fetch installed packages on Android.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Skyzohkey/react-native-apk"
+  },
+  "keywords": [
+    "react-native",
+    "installs",
+    "uninstalls",
+    "version",
+    "apps",
+    "packages",
+    "system"
+  ]
+}
