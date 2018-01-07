@@ -46,7 +46,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
 
   public void installApp(String packagePath) {
     Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.setDataAndType(packagePath, "application/vnd.android.package-archive");
+    intent.setDataAndType(Uri.parse(packagePath), "application/vnd.android.package-archive");
     startActivity(intent);
   }
 
