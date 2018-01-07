@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.skyzohlabs;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.ApplicationInfo;
