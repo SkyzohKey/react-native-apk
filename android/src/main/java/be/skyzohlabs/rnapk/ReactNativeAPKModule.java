@@ -61,16 +61,12 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public String getAppVersion(String packageName, Callback cb) {
-    if (!this.isAppInstalled(packageName)) {
-      cb.invoke(null);
-    }
-
     try {
       PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName, 0);
 
       cb.invoke(pInfo.versionName);
     } catch (PackageManager.NameNotFoundException e) {
-      cb.invoke(null);
+      cb.invoke(false);
     }
   }
 

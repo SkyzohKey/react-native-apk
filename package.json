@@ -3,7 +3,7 @@
   "license": "MIT",
   "name": "react-native-apk",
   "author": "SkyzohKey <skyzohkey@protonmail.com>",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description":
     "API to install, uninstall, get version, check presence of a package, or fetch installed packages on Android.",
   "repository": {
