@@ -74,7 +74,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
 
       successCallback(pInfo.versionName);
     } catch (PackageManager.NameNotFoundException e) {
-      successCallback(null)
+      successCallback(null);
     }
   }
 
