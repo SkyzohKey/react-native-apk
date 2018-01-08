@@ -33,16 +33,15 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public Boolean isAppInstalled(String packageName) {
+  public Boolean isAppInstalled(String packageName, Callback errorCallback, Callback successCallback) {
     try {
       PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName,
           PackageManager.GET_ACTIVITIES);
 
-      return true;
+      successCallback(true);
     } catch (PackageManager.NameNotFoundException e) {
+      successCallback(false);
     }
-
-    return false;
   }
 
   @ReactMethod
@@ -53,45 +52,45 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public Boolean uninstallApp(String packageName) {
+  public Boolean uninstallApp(String packageName, Callback errorCallback, Callback successCallback) {
     if (!this.isAppInstalled(packageName)) {
-      return false;
+      successCallback(false);
     }
 
     Intent intent = new Intent(Intent.ACTION_DELETE);
     intent.setData(Uri.parse("package:" + packageName));
     this.reactContext.startActivity(intent);
-    return true;
+    successCallback(true);
   }
 
   @ReactMethod
-  public String getAppVersion(String packageName) {
+  public String getAppVersion(String packageName, Callback errorCallback, Callback successCallback) {
     if (!this.isAppInstalled(packageName)) {
-      return null;
+      successCallback(null);
     }
 
     try {
       PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName, 0);
 
-      return pInfo.versionName;
+      successCallback(pInfo.versionName);
     } catch (PackageManager.NameNotFoundException e) {
-      return null;
+      successCallback(null)
     }
   }
 
   @ReactMethod
-  public List<String> getApps() {
+  public List<String> getApps(Callback errorCallback, Callback successCallback) {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
 
     List<String> ret = new ArrayList<>();
     for (final PackageInfo p : packages) {
       ret.add(p.packageName);
     }
-    return ret;
+    successCallback(ret);
   }
 
   @ReactMethod
-  public List<String> getNonSystemApps() {
+  public List<String> getNonSystemApps(Callback errorCallback, Callback successCallback) {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
 
     List<String> ret = new ArrayList<>();
@@ -100,7 +99,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
         ret.add(p.packageName);
       }
     }
-    return ret;
+    successCallback(ret);
   }
 
   @ReactMethod
