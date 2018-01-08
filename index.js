@@ -2,9 +2,10 @@
  * @providesModule react-native-apk
  */
 
-var RNAPK = require("react-native").NativeModules.ReactNativeAPK;
+var RN = require("react-native");
+module.exports = RN.NativeModules.ReactNativeAPK;
 
-module.exports = {
+var rnApk = {
   /**
    * Get a list of all the apps that are installed on the device.
    *

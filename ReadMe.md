@@ -22,8 +22,8 @@ $ react-native link react-native-apk
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
 
-* Add `import com.skyzohlabs.ReactNativeAPK;` to the imports at the top of the file
-* Add `new ReactNativeAPK()` to the list returned by the `getPackages()` method
+* Add `import be.skyzohlabs.rnapk.ReactNativeAPKPackage;` to the imports at the top of the file
+* Add `new ReactNativeAPKPackage()` to the list returned by the `getPackages()` method
 
 2. Append the following lines to `android/settings.gradle`:
    ```
@@ -57,4 +57,7 @@ const installedApps = ReactNativeAPK.getApps();
 
 // Get apps the user has EXPLICITLY installed on the device:
 const userApps = ReactNativeAPK.getNonSystemApps();
+
+// Run an application:
+ReactNativeAPK.runApp("org.mozilla.klar");
 ```
