@@ -1,4 +1,4 @@
-package com.skyzohlabs;
+package be.skyzohlabs.rnapk;
 
 import android.content.pm.PackageManager;
 import android.content.pm.PackageInfo;
@@ -32,6 +32,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
     return "ReactNativeAPK";
   }
 
+  @ReactMethod
   public Boolean isAppInstalled(String packageName) {
     try {
       PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName,
@@ -44,12 +45,14 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
     return false;
   }
 
+  @ReactMethod
   public void installApp(String packagePath) {
     Intent intent = new Intent(Intent.ACTION_VIEW);
     intent.setDataAndType(Uri.parse(packagePath), "application/vnd.android.package-archive");
     this.reactContext.startActivity(intent);
   }
 
+  @ReactMethod
   public Boolean uninstallApp(String packageName) {
     if (!this.isAppInstalled(packageName)) {
       return false;
@@ -61,6 +64,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
     return true;
   }
 
+  @ReactMethod
   public String getAppVersion(String packageName) {
     if (!this.isAppInstalled(packageName)) {
       return null;
@@ -75,6 +79,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
     }
   }
 
+  @ReactMethod
   public List<String> getApps() {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
 
@@ -85,6 +90,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
     return ret;
   }
 
+  @ReactMethod
   public List<String> getNonSystemApps() {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
 
@@ -97,6 +103,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
     return ret;
   }
 
+  @ReactMethod
   public void runApp(String packageName) {
     // TODO: Allow to pass Extra's from react.
     Intent launchIntent = this.reactContext.getPackageManager().getLaunchIntentForPackage(packageName);

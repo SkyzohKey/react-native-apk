@@ -1,4 +1,4 @@
-package com.skyzohlabs;
+package be.skyzohlabs.rnapk;
 
 import java.util.Arrays;
 import java.util.Collections;
