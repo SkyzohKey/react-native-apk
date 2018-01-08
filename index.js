@@ -2,9 +2,9 @@
  * @providesModule react-native-apk
  */
 
-const RNAPK = require("react-native").NativeModules.ReactNativeAPK;
+var RNAPK = require("react-native").NativeModules.ReactNativeAPK;
 
-export default class ReactNativeAPK {
+module.exports = {
   /**
    * Get a list of all the apps that are installed on the device.
    *
@@ -15,9 +15,9 @@ export default class ReactNativeAPK {
    *
    * @return {Array} Returns an array containing the apps.
    */
-  static getApps = () => {
+  getApps: function() {
     return RNAPK.getApps();
-  };
+  },
 
   /**
    * Get a list of the apps the user has installed on the device.
@@ -31,9 +31,9 @@ export default class ReactNativeAPK {
    *
    * @return {Array} Returns an array containing the apps.
    */
-  static getNonSystemApps = () => {
+  getNonSystemApps: function() {
     return RNAPK.getNonSystemApps();
-  };
+  },
 
   /**
    * Install an application to the device.
@@ -45,9 +45,9 @@ export default class ReactNativeAPK {
    * @param {String} packagePath - Path to the APK to install.
    * @return {void}
    */
-  static installApp = packagePath => {
+  installApp: function(packagePath) {
     return RNAPK.installApp(packagePath);
-  };
+  },
 
   /**
    * Uninstall an application from the device.
@@ -62,9 +62,9 @@ export default class ReactNativeAPK {
    * @param {String} packageName - Package's name of the application.
    * @return {Boolean} Returns true if the app has been uninstalled.
    */
-  static uninstallApp = packageName => {
+  uninstallApp: function(packageName) {
     return RNAPK.uninstallApp(packageName);
-  };
+  },
 
   /**
    * A method to check whether an app is installed on the device
@@ -82,9 +82,9 @@ export default class ReactNativeAPK {
    * @param {String} packageName - Package's name of the application.
    * @return {Boolean} Returns true if app is installed, false if not.
    */
-  static isAppInstalled = packageName => {
+  isAppInstalled: function(packageName) {
     return RNAPK.isAppInstalled(packageName);
-  };
+  },
 
   /**
    * A method to get an application version based on it's package name.
@@ -97,9 +97,9 @@ export default class ReactNativeAPK {
    * @param {String} packageName - Package's name of the application.
    * @return {String} Returns the version of the package.
    */
-  static getAppVersion = packageName => {
+  getAppVersion: function(packageName) {
     return RNAPK.getAppVersion(packageName);
-  };
+  },
 
   /**
    * A method to run an application based on package's name.
@@ -111,7 +111,7 @@ export default class ReactNativeAPK {
    * @param {String} packageName - Package's name of the application.
    * @return {void}
    */
-  static runApp = packageName => {
+  runApp: function(packageName) {
     return RNAPK.runApp(packageName);
-  };
-}
+  }
+};
