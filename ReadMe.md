@@ -47,16 +47,24 @@ ReactNativeAPK.installApp("path/to/apk-release.apk");
 ReactNativeAPK.uninstallApp("org.package.name");
 
 // Fetch if an app is installed on the device:
-const installed = ReactNativeAPK.isAppInstalled("org.mozilla.klar");
+ReactNativeAPK.isAppInstalled("org.mozilla.klar", installed => {
+  console.log("Is app installed?", installed);
+});
 
 // Get version of an installed app:
-const firefoxVersion = ReactNativeAPK.getAppVersion("org.mozilla.klar");
+ReactNativeAPK.getAppVersion("org.mozilla.klar", version => {
+  console.log("App version", version);
+});
 
 // Get ALL the apps installed on the device:
-const installedApps = ReactNativeAPK.getApps();
+ReactNativeAPK.getApps(apps => {
+  console.log(apps);
+});
 
 // Get apps the user has EXPLICITLY installed on the device:
-const userApps = ReactNativeAPK.getNonSystemApps();
+ReactNativeAPK.getNonSystemApps(apps => {
+  console.log(apps);
+});
 
 // Run an application:
 ReactNativeAPK.runApp("org.mozilla.klar");
