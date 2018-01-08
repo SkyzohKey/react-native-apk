@@ -33,7 +33,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public Boolean isAppInstalled(String packageName, Callback cb) {
+  public void isAppInstalled(String packageName, Callback cb) {
     try {
       PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName,
           PackageManager.GET_ACTIVITIES);
@@ -52,7 +52,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public Boolean uninstallApp(String packageName, Callback cb) {
+  public void uninstallApp(String packageName, Callback cb) {
     Intent intent = new Intent(Intent.ACTION_DELETE);
     intent.setData(Uri.parse("package:" + packageName));
     this.reactContext.startActivity(intent);
@@ -60,7 +60,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public String getAppVersion(String packageName, Callback cb) {
+  public void getAppVersion(String packageName, Callback cb) {
     try {
       PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName, 0);
 
@@ -71,7 +71,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public List<String> getApps(Callback cb) {
+  public void getApps(Callback cb) {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
 
     List<String> ret = new ArrayList<>();
@@ -82,7 +82,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public List<String> getNonSystemApps(Callback cb) {
+  public void getNonSystemApps(Callback cb) {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
 
     List<String> ret = new ArrayList<>();
