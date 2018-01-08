@@ -66,9 +66,13 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
       return null;
     }
 
-    PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName, 0);
+    try {
+      PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName, 0);
 
-    return pInfo.versionName;
+      return pInfo.versionName;
+    } catch (PackageManager.NameNotFoundException e) {
+      return null;
+    }
   }
 
   public List<String> getApps() {
@@ -91,6 +95,13 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
       }
     }
     return ret;
+  }
+
+  public void runApp(String packageName) {
+    // TODO: Allow to pass Extra's from react.
+    Intent launchIntent = this.reactContext.getPackageManager().getLaunchIntentForPackage(packageName);
+    //launchIntent.putExtra("test", "12331");
+    this.reactContext.startActivity(launchIntent);
   }
 
   /*@Override
