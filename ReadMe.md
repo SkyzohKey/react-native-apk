@@ -1,6 +1,7 @@
 # react-native-apk
 
 [![npm version](https://badge.fury.io/js/react-native-apk.svg)](https://badge.fury.io/js/react-native-apk)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSkyzohKey%2Freact-native-apk.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSkyzohKey%2Freact-native-apk?ref=badge_shield)
 
 A react-native library to get various informations about an Android app.
 
@@ -69,3 +70,7 @@ ReactNativeAPK.getNonSystemApps(apps => {
 // Run an application:
 ReactNativeAPK.runApp("org.mozilla.klar");
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSkyzohKey%2Freact-native-apk.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FSkyzohKey%2Freact-native-apk?ref=badge_large)
