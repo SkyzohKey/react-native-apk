@@ -2,8 +2,9 @@
  * @providesModule react-native-apk
  */
 
-var RN = require("react-native");
-module.exports = RN.NativeModules.ReactNativeAPK;
+var RN = require("react-native").default;
+var NativeModules = RN.NativeModules;
+var RNAPK = NativeModules.ReactNativeAPK;
 
 var rnApk = {
   /**
@@ -116,3 +117,5 @@ var rnApk = {
     return RNAPK.runApp(packageName);
   }
 };
+
+module.exports = rnApk
