@@ -5,6 +5,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Binder;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -15,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.io.File;
 
 import javax.annotation.Nullable;
 
@@ -46,9 +51,21 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void installApp(String packagePath) {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.setDataAndType(Uri.parse(packagePath), "application/vnd.android.package-archive");
-    this.reactContext.startActivity(intent);
+    File toInstall = new File(packagePath);
+    if (Build.VERSION.SDK_INT >= 24) {
+      String callingPackageName = this.reactContext.getPackageManager().getNameForUid(Binder.getCallingUid());
+      Uri apkUri = FileProvider.getUriForFile(this.reactContext, callingPackageName+".fileprovider", toInstall);
+      Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+      intent.setData(apkUri);
+      intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      this.reactContext.startActivity(intent);
+    } else {
+      Uri apkUri = Uri.fromFile(toInstall);
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+      intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      this.reactContext.startActivity(intent);
+    }
   }
 
   @ReactMethod
