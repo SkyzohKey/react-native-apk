@@ -2,8 +2,7 @@
  * @providesModule react-native-apk
  */
 
-var RN = require("react-native").default;
-var NativeModules = RN.NativeModules;
+import { NativeModules } from 'react-native';
 var RNAPK = NativeModules.ReactNativeAPK;
 
 var rnApk = {
