@@ -79,6 +79,14 @@ If running even later version of react-native you'll need to use AndroidX (e.g. 
   </application>
 ```
 
+Change dependency include in `android/app/build.gradle`: 
+
+FROM: `compile project(':react-native-apk')`
+
+TO: `implementation project(':react-native-apk')`
+
+#### Paths and permissions
+
 In android/app/src/main/res/xml folder (create it if it does not exist) add a file named filepaths.xml and paste the following contents:
 ```
   <?xml version="1.0" encoding="utf-8"?>
