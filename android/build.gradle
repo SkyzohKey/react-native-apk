@@ -1,23 +1,25 @@
 apply plugin: 'com.android.library'
 
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion safeExtGet("compileSdkVersion", 26)
+    buildToolsVersion safeExtGet("buildToolsVersion", "27.0.3")
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 22
+        minSdkVersion safeExtGet("minSdkVersion", 16)
+        targetSdkVersion safeExtGet("targetSdkVersion", 26)
         versionCode 1
         versionName "1.0"
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
     }
     lintOptions {
-       warning 'InvalidPackage'
+        abortOnError false
     }
 }
 
+
 dependencies {
-    compile 'com.facebook.react:react-native:0.20.+'
+    implementation "com.facebook.react:react-native:${safeExtGet("reactNative", "+")}" // from node_modules
 }
