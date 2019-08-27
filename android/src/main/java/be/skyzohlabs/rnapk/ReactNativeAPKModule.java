@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Binder;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -39,9 +39,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void isAppInstalled(String packageName, Callback cb) {
     try {
-      PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName,
-          PackageManager.GET_ACTIVITIES);
-
+      PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
       cb.invoke(true);
     } catch (PackageManager.NameNotFoundException e) {
       cb.invoke(false);
@@ -79,7 +77,6 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   public void getAppVersion(String packageName, Callback cb) {
     try {
       PackageInfo pInfo = this.reactContext.getPackageManager().getPackageInfo(packageName, 0);
-
       cb.invoke(pInfo.versionName);
     } catch (PackageManager.NameNotFoundException e) {
       cb.invoke(false);
@@ -89,7 +86,6 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getApps(Callback cb) {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
-
     List<String> ret = new ArrayList<>();
     for (final PackageInfo p : packages) {
       ret.add(p.packageName);
@@ -100,7 +96,6 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getNonSystemApps(Callback cb) {
     List<PackageInfo> packages = this.reactContext.getPackageManager().getInstalledPackages(0);
-
     List<String> ret = new ArrayList<>();
     for (final PackageInfo p : packages) {
       if ((p.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
@@ -114,16 +109,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   public void runApp(String packageName) {
     // TODO: Allow to pass Extra's from react.
     Intent launchIntent = this.reactContext.getPackageManager().getLaunchIntentForPackage(packageName);
-    //launchIntent.putExtra("test", "12331");
     this.reactContext.startActivity(launchIntent);
   }
 
-  /*@Override
-  public @Nullable Map<String, Object> getConstants() {
-      Map<String, Object> constants = new HashMap<>();
-  
-      constants.put("getApps", getApps());
-      constants.put("getNonSystemApps", getNonSystemApps());
-      return constants;
-  }*/
 }

@@ -36,6 +36,13 @@ $ react-native link react-native-apk
      compile project(':react-native-apk')
    ```
 
+#### SDK Breaking changes
+
+Due to major breaking changes in react-native and AndroidX please use appropiate plugin version depending on your build.
+
+ - 0.2.8 = SDK <28
+ - 1.0.0 = SDK >28 
+
 #### SDK 24 and higher
 
 As of SDK version 24 (7.0) Android requires you to set up a Fileprovider for installing apks. To do so add the following to your AndroidManifest.xml file:
@@ -54,6 +61,31 @@ As of SDK version 24 (7.0) Android requires you to set up a Fileprovider for ins
 
   </application>
 ```
+
+#### SDK 28 and higher
+If running even later version of react-native you'll need to use AndroidX (e.g. build version >28).
+```
+  <application>
+   ...
+    <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+  </application>
+```
+
+Change dependency include in `android/app/build.gradle`: 
+
+FROM: `compile project(':react-native-apk')`
+
+TO: `implementation project(':react-native-apk')`
+
+#### Paths and permissions
 
 In android/app/src/main/res/xml folder (create it if it does not exist) add a file named filepaths.xml and paste the following contents:
 ```
